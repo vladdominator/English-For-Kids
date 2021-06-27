@@ -15,44 +15,44 @@
   transition: transform 0.3s ease-in-out 0s;
   transform: translate(0, 0);
   z-index: 1000;
-}
-.hamburger__container {
-  display: block;
-  z-index: 1000;
-  position: relative;
-  width: 40px;
-  height: 30px;
-  cursor: pointer;
-}
-.hamburger__container::before {
-  content: "";
-  top: 0;
-  position: absolute;
-  left: 0;
-  height: 12%;
-  width: 100%;
-  transition: all 0.3s ease-in-out 0s;
-  background-color: rgb(77 173 247);
-}
-.hamburger__container::after {
-  content: "";
-  bottom: 0;
-  position: absolute;
-  left: 0;
-  height: 12%;
-  width: 100%;
-  transition: all 0.3s ease-in-out 0s;
-  background-color: rgb(77 173 247);
-}
-.hamburger__container > span {
-  position: absolute;
-  top: 50%;
-  transform: scale(1) translate(0px, -50%);
-  left: 0;
-  height: 12%;
-  width: 100%;
-  transition: all 0.3s ease-in-out 0s;
-  background-color: rgb(77 173 247);
+  &__container {
+    display: block;
+    z-index: 1000;
+    position: relative;
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+    &::before {
+      content: "";
+      top: 0;
+      position: absolute;
+      left: 0;
+      height: 12%;
+      width: 100%;
+      transition: all 0.3s ease-in-out 0s;
+      background-color: rgb(77 173 247);
+    }
+    &::after {
+      content: "";
+      bottom: 0;
+      position: absolute;
+      left: 0;
+      height: 12%;
+      width: 100%;
+      transition: all 0.3s ease-in-out 0s;
+      background-color: rgb(77 173 247);
+    }
+    & > span {
+      position: absolute;
+      top: 50%;
+      transform: scale(1) translate(0px, -50%);
+      left: 0;
+      height: 12%;
+      width: 100%;
+      transition: all 0.3s ease-in-out 0s;
+      background-color: rgb(77 173 247);
+    }
+  }
 }
 @media screen and (max-width: 1264px) {
   .hamburger-active {

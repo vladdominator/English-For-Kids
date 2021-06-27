@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { BrowserRouter as Router, Switch, Route, browserHistory } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { CardPage } from "./components/CardPage/CardPage";
 import { MainPage } from "./components/MainPage/MainPage";
 import { Navigation } from "./components/Navigation/Navigation";
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   function handleNavRoute(title: string): void {
     listNav(title);
   }
-  return(<Router history = {browserHistory}>
+  return(<BrowserRouter>
     <Navigation onAdd={handleGame} game={game} onAddState={handleNavRoute} navState={ navState } />
     <div className="container">
       <Switch>
@@ -26,6 +26,6 @@ const App: React.FC = () => {
         <Route path="/cards/" component={CardPage} />
       </Switch>
     </div>
-  </Router>)
+  </BrowserRouter>)
 };
 export default App;
