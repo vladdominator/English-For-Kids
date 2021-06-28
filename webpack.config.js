@@ -38,11 +38,6 @@ module.exports = ({ development }) => ({
   module: {
     rules: [
       {
-        test: /\.[tj]s$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
         test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,
         use: {
@@ -73,6 +68,11 @@ module.exports = ({ development }) => ({
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
+  },
+   performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
   },
   plugins: [
     // ...esLintPlugin(development),

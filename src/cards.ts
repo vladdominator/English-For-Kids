@@ -6,6 +6,7 @@ const cards = [
     "Animal (set B)",
     "Clothes",
     "Emotions",
+    "Nature",
   ],
   [
     {
@@ -305,6 +306,56 @@ const cards = [
       translation: "смех",
       image: "img/laugh.jpg",
       audioSrc: "audio/laugh.mp3",
+    },
+  ],
+  [
+    {
+      word: "valley",
+      translation: "долина",
+      image: "img/valley.jpg",
+      audioSrc: "audio/valley.mp3",
+    },
+    {
+      word: "sunset",
+      translation: "закат",
+      image: "img/sunset.jpg",
+      audioSrc: "audio/sunset.mp3",
+    },
+    {
+      word: "stars",
+      translation: "звезды",
+      image: "img/stars.jpg",
+      audioSrc: "audio/stars.mp3",
+    },
+    {
+      word: "sky",
+      translation: "небо",
+      image: "img/sky.jpg",
+      audioSrc: "audio/sky.mp3",
+    },
+    {
+      word: "ocean",
+      translation: "океан",
+      image: "img/ocean.jpg",
+      audioSrc: "audio/ocean.mp3",
+    },
+    {
+      word: "mountain",
+      translation: "гора",
+      image: "img/mountain.jpg",
+      audioSrc: "audio/moutain.mp3",
+    },
+    {
+      word: "lake",
+      translation: "озеро",
+      image: "img/lake.jpg",
+      audioSrc: "audio/lake.mp3",
+    },
+    {
+      word: "forest",
+      translation: "лес",
+      image: "img/forest.jpg",
+      audioSrc: "audio/forest.mp3",
     },
   ],
 ];

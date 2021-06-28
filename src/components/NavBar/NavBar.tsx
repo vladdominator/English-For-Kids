@@ -112,6 +112,15 @@ export const NavBar: React.FC<INav> = (props) => {
               Emotions
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/cards/#7"
+              className="navbar__element"
+              onClick={changeRoute}
+            >
+              Nature
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>
