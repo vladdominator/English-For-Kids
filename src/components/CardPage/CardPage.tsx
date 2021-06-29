@@ -1,6 +1,5 @@
 import React from "react";
 import cards from "../../cards";
-import "./CardPage.scss";
 
 interface ICards {
   [key: string]: string;

@@ -10,10 +10,15 @@
     "prettier",
     "plugin:react/recommended"
   ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"], // Your TypeScript files extension
+      "parserOptions": {
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "plugins": ["@typescript-eslint", "prettier", "react-hooks", "react"],
   "rules": {
     "@typescript-eslint/dot-notation": "off",

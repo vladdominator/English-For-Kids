@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { CardPage } from "./components/CardPage/CardPage";
 import { MainPage } from "./components/MainPage/MainPage";
@@ -14,18 +14,25 @@ const App: React.FC = () => {
   function handleNavRoute(title: string): void {
     listNav(title);
   }
-  return(<BrowserRouter>
-    <Navigation onAdd={handleGame} game={game} onAddState={handleNavRoute} navState={ navState } />
-    <div className="container">
-      <Switch>
-        <Route
-          path="/"
-          render={() => <MainPage game={game} onAdd={handleNavRoute} />}
-          exact
-        />
-        <Route path="/cards/" component={CardPage} />
-      </Switch>
-    </div>
-  </BrowserRouter>)
+  return (
+    <BrowserRouter>
+      <Navigation
+        onAdd={handleGame}
+        game={game}
+        onAddState={handleNavRoute}
+        navState={navState}
+      />
+      <div className="container">
+        <Switch>
+          <Route
+            path="/"
+            render={() => <MainPage game={game} onAdd={handleNavRoute} />}
+            exact
+          />
+          <Route path="/cards/" component={CardPage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
 };
 export default App;
