@@ -1,14 +1,5 @@
 const cards = [
   [
-    "Action (set A)",
-    "Action (set B)",
-    "Animal (set A)",
-    "Animal (set B)",
-    "Clothes",
-    "Emotions",
-    "Nature",
-  ],
-  [
     {
       word: "cry",
       translation: "плакать",
@@ -343,7 +334,7 @@ const cards = [
       word: "mountain",
       translation: "гора",
       image: "img/mountain.jpg",
-      audioSrc: "audio/moutain.mp3",
+      audioSrc: "audio/mountain.mp3",
     },
     {
       word: "lake",
@@ -358,6 +349,66 @@ const cards = [
       audioSrc: "audio/forest.mp3",
     },
   ],
+  [
+    {
+      word: "watermelon",
+      translation: "арбуз",
+      image: "img/watermelon.jpg",
+      audioSrc: "audio/watermelon.mp3",
+    },
+    {
+      word: "potato",
+      translation: "картошка",
+      image: "img/potato.jpg",
+      audioSrc: "audio/potato.mp3",
+    },
+    {
+      word: "pizza",
+      translation: "пицца",
+      image: "img/pizza.jpg",
+      audioSrc: "audio/pizza.mp3",
+    },
+    {
+      word: "ice cream",
+      translation: "мороженое",
+      image: "img/ice cream.jpg",
+      audioSrc: "audio/ice cream.mp3",
+    },
+    {
+      word: "cucumber",
+      translation: "огурец",
+      image: "img/cucumber.jpg",
+      audioSrc: "audio/cucumber.mp3",
+    },
+    {
+      word: "cookies",
+      translation: "печенье",
+      image: "img/cookies.jpg",
+      audioSrc: "audio/cookies.mp3",
+    },
+    {
+      word: "crisps",
+      translation: "чипсы",
+      image: "img/crisps.jpg",
+      audioSrc: "audio/crisps.mp3",
+    },
+    {
+      word: "carrot",
+      translation: "морковка",
+      image: "img/carrot.jpg",
+      audioSrc: "audio/carrot.mp3",
+    },
+  ],
+];
+const categoriesCards = [
+  "Action (set A)",
+  "Action (set B)",
+  "Animal (set A)",
+  "Animal (set B)",
+  "Clothes",
+  "Emotions",
+  "Nature",
+  "Food",
 ];
 
-export default cards;
+export { cards, categoriesCards };

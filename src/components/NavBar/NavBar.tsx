@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { cards } from "../../cards";
 import "./NavBar.scss";
 
 interface INav {
@@ -40,6 +41,14 @@ export const NavBar: React.FC<INav> = (props) => {
       [Number(window.location.hash.slice(1))]?.classList.add(
         "navbar__element-active"
       );
+    if (window.location.pathname === "/statistic") {
+      document
+        ?.querySelectorAll(".navbar__element")
+        [cards.length + 1]?.classList.add("navbar__element-active");
+      document
+        ?.querySelectorAll(".navbar__element")[0]
+        ?.classList.remove("navbar__element-active");
+    }
   }, []);
   return (
     <div
@@ -119,6 +128,24 @@ export const NavBar: React.FC<INav> = (props) => {
               onClick={changeRoute}
             >
               Nature
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/cards/#8"
+              className="navbar__element"
+              onClick={changeRoute}
+            >
+              Food
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/statistic"
+              className="navbar__element"
+              onClick={changeRoute}
+            >
+              Statistic
             </NavLink>
           </li>
         </ul>

@@ -1,0 +1,131 @@
+%statistic__text {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+}
+.statistic__container {
+  padding: 30px 0 0 0;
+}
+.statistic__repeat {
+  height: 50px;
+  width: 230px;
+  background: rgb(77 173 247);
+  border: 0;
+  border-radius: 5px;
+  @extend %statistic__text;
+  transition: all 0.3s ease-in-out 0s;
+  &:hover {
+    background: rgb(252 98 98);
+    transform: scale(0.99);
+    box-shadow: 1px -1px 18px 12px rgba(34, 60, 80, 0.2);
+  }
+}
+.statistic__reset {
+  height: 50px;
+  width: 100px;
+  margin-left: 30px;
+  background: rgb(77 173 247);
+  border: 0;
+  border-radius: 5px;
+  @extend %statistic__text;
+  transition: all 0.3s ease-in-out 0s;
+  &:hover {
+    background: rgb(252 98 98);
+    transform: scale(0.99);
+    box-shadow: 1px -1px 18px 12px rgba(34, 60, 80, 0.2);
+  }
+}
+.statistic__buttons {
+  margin-bottom: 30px;
+}
+.statistic__text {
+  background-color: rgb(252 98 98);
+  display: table-caption;
+  padding: 10px;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 2.3rem;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  height: 50px;
+  border-radius: 5px 5px 0 0;
+  @extend %statistic__text;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+.statistic__layer {
+  border-collapse: collapse;
+  width: 100%;
+  word-break: break-word;
+}
+table > tr {
+  vertical-align: middle;
+}
+.table__row td {
+  height: 36px;
+  padding: 6px;
+  text-align: center;
+  color: #fff;
+  vertical-align: middle;
+}
+.table__row {
+  background: #6699FF;
+  font-size: 18px;
+}
+.table__row:last-child {
+  border-radius: 0 0 5px 5px;
+}
+#category__trap{
+  height: 50px;
+  background: #6699FF;
+  font-size: 25px;
+  font-weight: 600;
+}
+@media screen and (max-width: 887px) {
+  #category__trap{
+    font-size: 18px;
+  }
+  .table__row {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 663px) {
+  #category__trap{
+    font-size: 14px;
+  }
+  .table__row {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 522px) {
+  #category__trap{
+    font-size: 10px;
+  }
+  .table__row {
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .statistic__buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  .statistic__reset {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+.sort__category {
+  cursor: pointer;
+}
+.sort__symbol {
+  margin-right: 5px;
+}
+.sort__symbol_disable {
+  display: none;
+}
+.sort__symbol_o {
+  transform: rotate(180deg);
+}

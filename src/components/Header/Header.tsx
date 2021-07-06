@@ -1,12 +1,12 @@
 import React from "react";
 import "./Header.scss";
 
-interface NavProps {
+interface INavProps {
   onAdd(title: boolean): void;
   for: boolean;
   onAddGame(title: boolean): void;
 }
-const Header: React.FC<NavProps> = (props) => {
+const Header: React.FC<INavProps> = (props) => {
   function handleNavBar() {
     props.onAdd(!props.for);
   }

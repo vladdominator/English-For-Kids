@@ -12,6 +12,8 @@ export const Navigation: React.FC<IForce> = (props) => {
   const [nav, list] = useState<boolean>(false);
   function handleNav(title: boolean): void {
     list(title);
+    if (title) document.body.classList.add("body__lock");
+    else document.body.classList.remove("body__lock");
   }
   function handleGame(title: boolean): void {
     props.onAdd(title);

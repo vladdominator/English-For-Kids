@@ -1,3 +1,7 @@
 export interface ICards {
-  [key: string]: string;
+  word: string;
+  translation: string;
+  image: string;
+  audioSrc: string;
+  isRotate?: boolean;
 }
