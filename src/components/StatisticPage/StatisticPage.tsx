@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { cards } from "../../cards";
 import { ILocalItem } from "../../ILocalItem";
 import "./StatisticPage.scss";
+import { difficultWords } from '../../difficultWords';
 
 export const StatisticPage: React.FC = () => {
   const [infoCards, changeInfoCards] = useState<ILocalItem[]>([]);
@@ -9,12 +11,14 @@ export const StatisticPage: React.FC = () => {
   const [sortBy, changeSortBy] = useState<boolean>(false);
   useEffect(() => {
     const objCards: ILocalItem[] = [];
-    cards.forEach((categoriesItem) => {
-      categoriesItem.forEach((cardsItem) => {
-        objCards.push(
-          JSON.parse(window.localStorage.getItem(cardsItem.word) || "")
-        );
-      });
+    cards.forEach((categoriesItem, index) => { 
+      if (index !== 8) {
+        categoriesItem.forEach((cardsItem) => {
+          objCards.push(
+            JSON.parse(window.localStorage.getItem(cardsItem.word) || "")
+          );
+        });
+      }
     });
     if (
       sort === "word" ||
@@ -45,15 +49,24 @@ export const StatisticPage: React.FC = () => {
         wrong: 0,
       };
       window.localStorage.setItem(item.word, JSON.stringify(obj));
-      return obj
-    })
+      return obj;
+    });
     changeInfoCards(objItem);
+  }
+  function changeRepeat() {
+    cards[8] = difficultWords();
   }
   return (
     <div className="statistic__container">
       <div className="statistic__buttons">
-        <button className="statistic__repeat">Repeat difficult words</button>
-        <button className="statistic__reset" onClick={resetChange}>Reset</button>
+        <NavLink to="/cards/#9">
+          <button onClick={changeRepeat} className="statistic__repeat">
+            Repeat difficult words
+          </button>
+        </NavLink>
+        <button className="statistic__reset" onClick={resetChange}>
+          Reset
+        </button>
       </div>
       <table className="statistic__layer">
         <caption className="statistic__text">Statistic</caption>
@@ -65,7 +78,7 @@ export const StatisticPage: React.FC = () => {
                   sort === "word" ? "sort__symbol" : "sort__symbol_disable"
                 }
               >
-                {sortBy ? "🠡" : '🠗'}
+                {sortBy ? "🠡" : "🠗"}
               </span>
               Word
             </td>
@@ -80,7 +93,7 @@ export const StatisticPage: React.FC = () => {
                     : "sort__symbol_disable"
                 }
               >
-                {sortBy ? "🠡" : '🠗'}
+                {sortBy ? "🠡" : "🠗"}
               </span>
               Translation
             </td>
@@ -90,10 +103,10 @@ export const StatisticPage: React.FC = () => {
             >
               <span
                 className={
-                  sort === "category" ? "sort__symbol"  : "sort__symbol_disable"
+                  sort === "category" ? "sort__symbol" : "sort__symbol_disable"
                 }
               >
-                {sortBy ? "🠡" : '🠗'}
+                {sortBy ? "🠡" : "🠗"}
               </span>
               Category
             </td>
@@ -103,7 +116,7 @@ export const StatisticPage: React.FC = () => {
                   sort === "clicks" ? "sort__symbol" : "sort__symbol_disable"
                 }
               >
-                {sortBy ? "🠗" : '🠡'}
+                {sortBy ? "🠗" : "🠡"}
               </span>
               Clicks
             </td>
@@ -116,7 +129,7 @@ export const StatisticPage: React.FC = () => {
                   sort === "correct" ? "sort__symbol" : "sort__symbol_disable"
                 }
               >
-                {sortBy ? "🠗" : '🠡'}
+                {sortBy ? "🠗" : "🠡"}
               </span>
               Correct
             </td>
@@ -126,7 +139,7 @@ export const StatisticPage: React.FC = () => {
                   sort === "wrong" ? "sort__symbol" : "sort__symbol_disable"
                 }
               >
-                {sortBy ? "🠗" : '🠡'}
+                {sortBy ? "🠗" : "🠡"}
               </span>
               Wrong
             </td>
@@ -139,7 +152,7 @@ export const StatisticPage: React.FC = () => {
                   sort === "perCent" ? "sort__symbol" : "sort__symbol_disable"
                 }
               >
-                {sortBy ? "🠗" : '🠡'}
+                {sortBy ? "🠗" : "🠡"}
               </span>
               Errors, %
             </td>

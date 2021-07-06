@@ -59,6 +59,7 @@
   }
 }
 .cards__words {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -151,4 +152,10 @@
       width: 280px;
     }
   }
+}
+.no__repeat_words {
+  margin-top: 40px;
+  font-size: 40px;
+  font-weight: 600;
+  color: #0099ae;
 }

@@ -3,5 +3,4 @@ export interface ICards {
   translation: string;
   image: string;
   audioSrc: string;
-  isRotate?: boolean;
 }

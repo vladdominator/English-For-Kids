@@ -1,3 +1,5 @@
+import { difficultWords } from "./difficultWords";
+
 const cards = [
   [
     {
@@ -399,6 +401,9 @@ const cards = [
       audioSrc: "audio/carrot.mp3",
     },
   ],
+  [
+    ...difficultWords() || []
+  ]
 ];
 const categoriesCards = [
   "Action (set A)",

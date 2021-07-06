@@ -10,7 +10,7 @@ const sortRandom = 0.5;
 interface ICardItem {
   onAddItem(item: ICards[]): void;
   list: ICards[] | undefined;
-  game: boolean
+  game: boolean;
 }
 export const CardPage: React.FC<ICardItem> = (props) => {
   const history = useHistory();
@@ -29,7 +29,14 @@ export const CardPage: React.FC<ICardItem> = (props) => {
   }
   const [arrSrc, changeArr] = useState<string[]>(cards[location].map((item) => item.audioSrc));
   useEffect(() => {
-    if(location > 8) throw new Error('nono');
+    if (!cards[location].length) {
+      setTimeout(() => {
+        document
+          ?.querySelectorAll(".navbar__element")[0]
+          ?.classList.add("navbar__element-active");
+        history.push('/');
+      }, 2000)
+    }
     if (props.game)   {
       props.onAddItem(cards[location]);
     }  else  {
@@ -140,6 +147,9 @@ export const CardPage: React.FC<ICardItem> = (props) => {
           ))
         }
       </div>
+      {
+        !props?.list?.length ? <p className="no__repeat_words">You do not have complicated words</p> : ''
+      }
       <ul className="cards__words">
         {props.list ? props.list
           .map((item: ICards, IndCard: number) => (

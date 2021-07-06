@@ -16,20 +16,22 @@ const App: React.FC = () => {
   const [listCard, updateCard] = useState<ICards[]>();
   useEffect(() => {
     cards.forEach((categoriesItem, index) => {
-      categoriesItem.forEach((cardsItem) => {
-        if (!window.localStorage.getItem(cardsItem.word)) {
-          const obj: ILocalItem = {
-            category: categoriesCards[index],
-            clicks: 0,
-            correct: 0,
-            perCent: "0.00",
-            translation: cardsItem.translation,
-            word: cardsItem.word,
-            wrong: 0,
-          };
-          window.localStorage.setItem(cardsItem.word, JSON.stringify(obj));
-        }
-      });
+      if (index !== 8) {
+        categoriesItem.forEach((cardsItem) => {
+          if (!window.localStorage.getItem(cardsItem.word)) {
+            const obj: ILocalItem = {
+              category: categoriesCards[index],
+              clicks: 0,
+              correct: 0,
+              perCent: "0.00",
+              translation: cardsItem.translation,
+              word: cardsItem.word,
+              wrong: 0,
+            };
+            window.localStorage.setItem(cardsItem.word, JSON.stringify(obj));
+          }
+        });
+      }
     });
   });
   const updateCardItem = (item: ICards[]) => {

@@ -44,7 +44,7 @@ export const NavBar: React.FC<INav> = (props) => {
     if (window.location.pathname === "/statistic") {
       document
         ?.querySelectorAll(".navbar__element")
-        [cards.length + 1]?.classList.add("navbar__element-active");
+        [cards.length]?.classList.add("navbar__element-active");
       document
         ?.querySelectorAll(".navbar__element")[0]
         ?.classList.remove("navbar__element-active");
