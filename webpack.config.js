@@ -75,7 +75,7 @@ module.exports = ({ development }) => ({
     maxAssetSize: 512000
   },
   plugins: [
-    ...esLintPlugin(development),
+    // ...esLintPlugin(development),
     new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
     new HtmlWebpackPlugin({
       title: "",
