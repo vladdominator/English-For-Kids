@@ -131,10 +131,16 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
     if (
       name.trim().length !== 0 &&
       translation.trim().length !== 0 &&
-      image &&
-      audio
+      audio &&
+      (audio as File).type === "audio/mpeg"
     ) {
-      formData.append("file", image, name);
+      if (
+        image &&
+        ((image as File).type === "image/jpeg" ||
+          (image as File).type === "image/png")
+      ) {
+        formData.append("file", image, name);
+      }
       formData.append("file", audio, name);
       formData.append("name", name);
       formData.append("categoryName", props.stateApi);
@@ -301,7 +307,7 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
                 Listen
               </button>
             </div>
-            <img src={`${api}/images/${item.name}.jpg`} alt="image" />
+            <img src={`${api}/images/${item.name}.jpg`} alt="image" onError={(e) => (e.target as HTMLImageElement).src = '../../img/screenshot.png'} />
             <button
               className="change__word_l"
               id={item._id}
