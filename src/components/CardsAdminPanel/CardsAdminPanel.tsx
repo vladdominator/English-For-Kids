@@ -16,12 +16,31 @@ interface ICards {
 const CardsAdminPanel: React.FC<IState> = (props) => {
   const [cards, setCards] = useState<ICards[]>([]);
   const [addTrue, setAddTrue] = useState<boolean>(false);
-  useEffect(() => {
+  const [name, setName] = useState<string>("");
+  const [translation, setTranslation] = useState<string>("");
+  const [image, setImage] = useState<File | string>();
+  const [audio, setAudio] = useState<File | string>();
+  function fetchAccos() {
     fetch(`${api}/cards`)
       .then((res) => res.json())
       .then((res) => {
-        if (res.categoryName === props.stateApi) setCards(res);
+        res.forEach((element: ICards) => {
+          if (!props.stateApi) {
+            if (
+              element.categoryName ===
+              window.location.pathname.split("/")[2].replace("%20", " ")
+            ) {
+              setCards(res);
+            }
+          }
+          if (element.categoryName === props.stateApi) {
+            setCards(res);
+          }    
+        });
       });
+  }
+  useEffect(() => {
+    fetchAccos();
   }, []);
   function fetchDataLive() {
     fetch(`${api}/cards`)
@@ -29,6 +48,41 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
       .then((res) => {
         if (res.categoryName === props.stateApi) setCards([...cards, ...res]);
       });
+  }
+  function cancelWo(e: React.MouseEvent) {
+    e.preventDefault();
+    setAddTrue(false);
+    setName("");
+    setTranslation("");
+  }
+  function addWord(e: React.MouseEvent) {
+    e.preventDefault();
+    const formData = new FormData();
+    if (
+      name.trim().length !== 0 &&
+      translation.trim().length !== 0 &&
+      image &&
+      audio
+    ) {
+      formData.append("file", image, name);
+      formData.append("file", audio, name);
+      formData.append("name", name);
+      formData.append("categoryName", props.stateApi);
+      formData.append("translation", translation);
+      formData.append("sound", `http://localhost:5000/sounds/${name}.mp3`);
+      formData.append("img", `http://localhost:5000/images/${name}.jpg`);
+      fetch(`${api}/cards`, {
+        method: "POST",
+        body: formData,
+        headers: {},
+      })
+        .then(function (response) {
+          return response.text();
+        })
+        .then(() => {
+          fetchAccos();
+        });
+    }
   }
   return (
     <div className="container">
@@ -44,7 +98,10 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
       >
         <div
           className={addTrue ? "add__words_active" : "add__words"}
-          onClick={() => setAddTrue(true)}
+          onClick={(e: React.MouseEvent) => {
+            if ((e.target as HTMLElement).className !== "cancel__wo")
+              setAddTrue(true);
+          }}
         >
           <p className="word__name-h">Add new word</p>
           <svg
@@ -83,22 +140,37 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
               />
             </defs>
           </svg>
-          <form>
+          <form encType="multipart/form-data">
             <p className="word__yt">Word:</p>
-            <input type="text" placeholder="Word" />
+            <input
+              type="text"
+              placeholder="Word"
+              onChange={(e: React.ChangeEvent) =>
+                setName((e.target as HTMLInputElement).value)
+              }
+            />
             <p className="word__yt">Translation:</p>
-            <input type="text" placeholder="Tranlation" />
+            <input
+              type="text"
+              placeholder="Tranlation"
+              onChange={(e: React.ChangeEvent) =>
+                setTranslation((e.target as HTMLInputElement).value)
+              }
+            />
             <div className="sound__word">
               <span>Sound</span>
               <div className="select__src">
                 <input
-                  name="file"
+                  name={name}
                   type="file"
                   id="input__file"
                   className="input__file"
+                  onChange={(e: React.ChangeEvent) => {
+                    setAudio((e.target as HTMLInputElement).files![0]);
+                  }}
                 />
-                <label className="input__file-button">
-                  <button className="secl">Select file</button>
+                <label className="input__file-button" htmlFor="input__file">
+                  <div className="secl">Select file</div>
                 </label>
               </div>
             </div>
@@ -106,21 +178,44 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
               <span>Image</span>
               <div className="select__src">
                 <input
-                  name="file"
+                  name={name}
                   type="file"
-                  id="input__file"
+                  id="input__filew"
                   className="input__file"
+                  onChange={(e: React.ChangeEvent) => {
+                    setImage((e.target as HTMLInputElement).files![0]);
+                  }}
                 />
-                <label className="input__file-button">
-                  <button className="secl">Select file</button>
+                <label className="input__file-button" htmlFor="input__filew">
+                  <div className="secl">Select file</div>
                 </label>
               </div>
+            </div>
+            <div className="buttons__removet">
+              <button className="cancel__wo" onClick={cancelWo}>
+                Cancel
+              </button>
+              <button className="add__wo" onClick={addWord}>
+                Submit
+              </button>
             </div>
           </form>
         </div>
         {cards.map((item, ind) => (
-          <div key={ind}>
-            <p>{item.name}</p>
+          <div key={ind} className="word__card_l">
+            <div className="word__l_name">
+             <span>Word: </span>  {item.name}
+            </div>
+            <div className="word__l_translation">
+             <span>Translation: </span> {item.name}
+            </div>
+            <div className="sound__l_translation">
+              <span>Sound file: </span> {`${item.name}.mp3`}
+            </div>
+            <img src={`${api}/images/${item.name}.jpg`} alt="" />
+            <button className="change__word_l">
+              Change
+            </button>
           </div>
         ))}
       </InfiniteScroll>

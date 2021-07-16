@@ -92,3 +92,6 @@ module.exports = ({ development }) => ({
   },
   ...devServer(development),
 });
+/**
+&& echo '/* /index.html 200' | cat >dist/_redirects
+*/
