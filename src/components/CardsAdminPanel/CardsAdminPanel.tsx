@@ -24,7 +24,7 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
     fetch(`${api}/cards`)
       .then((res) => res.json())
       .then((res) => {
-        const gh = [];
+        const gh: ICards[] = [];
         res.forEach((element: ICards) => {
           if (!props.stateApi) {
             if (
@@ -91,6 +91,16 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
     audio.src = `${api}/sounds/${(e.target as HTMLElement).id}.mp3`;
     audio.currentTime = 0;
     audio.play();
+  }
+  function deleteWord(e: React.MouseEvent) {
+    fetch(`${api}/cards/${(e.target as HTMLElement).id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      fetchAccos();
+    });
   }
   return (
     <div className="container">
@@ -214,6 +224,9 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
         </div>
         {cards.map((item, ind) => (
           <div key={ind} className="word__card_l">
+            <div className="krest__word" id={item._id} onClick={deleteWord}>
+              <p id={item._id}>×</p>
+            </div>
             <div className="word__l_name">
               <span>Word: </span> {item.name}
             </div>
