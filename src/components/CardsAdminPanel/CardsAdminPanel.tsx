@@ -35,7 +35,7 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
           }
           if (element.categoryName === props.stateApi) {
             setCards(res);
-          }    
+          }
         });
       });
   }
@@ -83,6 +83,12 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
           fetchAccos();
         });
     }
+  }
+  function soundClick(e: React.MouseEvent) {
+    const audio = new Audio();
+    audio.src = `${api}/sounds/${(e.target as HTMLElement).id}.mp3`;
+    audio.currentTime = 0;
+    audio.play()
   }
   return (
     <div className="container">
@@ -204,18 +210,23 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
         {cards.map((item, ind) => (
           <div key={ind} className="word__card_l">
             <div className="word__l_name">
-             <span>Word: </span>  {item.name}
+              <span>Word: </span> {item.name}
             </div>
             <div className="word__l_translation">
-             <span>Translation: </span> {item.name}
+              <span>Translation: </span> {item.name}
             </div>
-            <div className="sound__l_translation">
-              <span>Sound file: </span> {`${item.name}.mp3`}
+            <div className="sound__l_sound">
+              <span>Sound file: {`${item.name}.mp3`}</span>
+              <button
+                className="listen__sound"
+                id={item.name}
+                onClick={soundClick}
+              >
+                Listen
+              </button>
             </div>
-            <img src={`${api}/images/${item.name}.jpg`} alt="" />
-            <button className="change__word_l">
-              Change
-            </button>
+            <img src={`${api}/images/${item.name}.jpg`} alt="image" />
+            <button className="change__word_l">Change</button>
           </div>
         ))}
       </InfiniteScroll>
