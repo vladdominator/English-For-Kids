@@ -48,7 +48,11 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
     fetch(`${api}/cards`)
       .then((res) => res.json())
       .then((res) => {
-        if (res.categoryName === props.stateApi) setCards([...cards, ...res]);
+        const gh: ICards[] = [];
+        res.forEach((item: ICards) => {
+          if (item.categoryName === props.stateApi) gh.push(item);
+        });
+        setCards([...cards, ...gh]);
       });
   }
   function cancelWo(e: React.MouseEvent) {
