@@ -151,6 +151,40 @@ form {
     margin-top: 20px;
     border-radius: 5px;
   }
+  form {
+    display: none;
+  }
+}
+.word__card_l_active {
+  width: 300px;
+  height: 400px;
+  margin-top: 20px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  img {
+    width: 260px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  .word__l_name {
+    display: none;
+  }
+  .word__l_translation {
+    display: none;
+  }
+  .sound__l_sound {
+    display: none;
+  }
+  img {
+    display: none;
+  }
+  .change__word_l {
+    display: none;
+  }
 }
 .word__l_name, .word__l_translation, .sound__l_sound {
   font-size: 22px;
