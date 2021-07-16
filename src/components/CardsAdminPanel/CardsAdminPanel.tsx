@@ -25,6 +25,14 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
       .then((res) => res.json())
       .then((res) => {
         res.forEach((element: ICards) => {
+          if (!props.stateApi) {
+            if (
+              element.categoryName ===
+              window.location.pathname.split("/")[2].replace("%20", " ")
+            ) {
+              setCards([...cards, element]);
+            }
+          }
           if (element.categoryName === props.stateApi) {
             setCards([...cards, element]);
           }
@@ -80,12 +88,12 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
     const audio = new Audio();
     audio.src = `${api}/sounds/${(e.target as HTMLElement).id}.mp3`;
     audio.currentTime = 0;
-    audio.play();
+    audio.play()
   }
   return (
     <div className="container">
       <p className="name_of_ac">
-        Category: <span>{props.stateApi}</span>
+        Category: <span>{window.location.pathname.split("/")[2].replace("%20", " ")}</span>
       </p>
       <InfiniteScroll
         dataLength={cards.length}
