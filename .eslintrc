@@ -37,7 +37,6 @@
 //       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
 //     ],
 //     "no-plusplus": "off",
-//     "max-len": ["warn", { "code": 120 }],
 //     "indent": [
 //       "warn",
 //       2,

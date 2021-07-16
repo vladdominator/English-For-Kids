@@ -17,7 +17,7 @@
     "sourceMap": true,
     "outDir": "./dist/",
     "downlevelIteration": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
   },
   "include": ["src"]
 }
