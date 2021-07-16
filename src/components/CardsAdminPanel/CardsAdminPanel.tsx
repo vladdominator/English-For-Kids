@@ -25,16 +25,8 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
       .then((res) => res.json())
       .then((res) => {
         res.forEach((element: ICards) => {
-          if (!props.stateApi) {
-            if (
-              element.categoryName ===
-              window.location.pathname.split("/")[2].replace("%20", " ")
-            ) {
-              setCards(res);
-            }
-          }
           if (element.categoryName === props.stateApi) {
-            setCards(res);
+            setCards([...cards, element]);
           }
         });
       });
@@ -88,7 +80,7 @@ const CardsAdminPanel: React.FC<IState> = (props) => {
     const audio = new Audio();
     audio.src = `${api}/sounds/${(e.target as HTMLElement).id}.mp3`;
     audio.currentTime = 0;
-    audio.play()
+    audio.play();
   }
   return (
     <div className="container">
