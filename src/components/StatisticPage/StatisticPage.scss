@@ -1,5 +1,6 @@
+@import "../../colors.scss";
 %statistic__text {
-  color: #fff;
+  color: $white;
   font-size: 20px;
   font-weight: 600;
 }
@@ -9,44 +10,44 @@
 .statistic__repeat {
   height: 50px;
   width: 230px;
-  background: rgb(77 173 247);
+  background: $blue;
   border: 0;
   border-radius: 5px;
   @extend %statistic__text;
   transition: all 0.3s ease-in-out 0s;
   &:hover {
-    background: rgb(252 98 98);
+    background: $buttons-sta;
     transform: scale(0.99);
-    box-shadow: 1px -1px 18px 12px rgba(34, 60, 80, 0.2);
+    box-shadow: 1px -1px 18px 12px $shadow-but;
   }
 }
 .statistic__reset {
   height: 50px;
   width: 100px;
   margin-left: 30px;
-  background: rgb(77 173 247);
+  background: $blue;
   border: 0;
   border-radius: 5px;
   @extend %statistic__text;
   transition: all 0.3s ease-in-out 0s;
   &:hover {
-    background: rgb(252 98 98);
+    background: $buttons-sta;
     transform: scale(0.99);
-    box-shadow: 1px -1px 18px 12px rgba(34, 60, 80, 0.2);
+    box-shadow: 1px -1px 18px 12px $shadow-but;
   }
 }
 .statistic__buttons {
   margin-bottom: 30px;
 }
 .statistic__text {
-  background-color: rgb(252 98 98);
+  background-color: $buttons-sta;
   display: table-caption;
   padding: 10px;
   font-size: 1.6rem;
   font-style: normal;
   font-weight: bold;
   line-height: 2.3rem;
-  color: #fff;
+  color: $white;
   text-align: center;
   vertical-align: middle;
   height: 50px;
@@ -67,11 +68,11 @@ table > tr {
   height: 36px;
   padding: 6px;
   text-align: center;
-  color: #fff;
+  color: $white;
   vertical-align: middle;
 }
 .table__row {
-  background: #6699FF;
+  background: $trap;
   font-size: 18px;
 }
 .table__row:last-child {
@@ -79,7 +80,7 @@ table > tr {
 }
 #category__trap{
   height: 50px;
-  background: #6699FF;
+  background: $trap;
   font-size: 25px;
   font-weight: 600;
 }

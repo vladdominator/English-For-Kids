@@ -1,3 +1,4 @@
+@import "./colors.scss";
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -10,7 +11,7 @@
   }
 }
 body {
-  background-color: #f8f8f8;
+  background-color: $body-color;
 }
 .body__lock {
   overflow: hidden;

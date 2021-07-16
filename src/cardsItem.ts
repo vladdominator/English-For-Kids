@@ -3,7 +3,7 @@ export const cardsItem = [
   "dance",
   "dive",
   "draw",
-  "fish",
+  "fished",
   "fly",
   "hug",
   "jump",

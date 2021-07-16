@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { IButton, setButton } from "../../redux/actions";
 import { cards } from "../../cards";
 import "./NavBar.scss";
 
 interface INav {
-  nav: boolean;
-  game: boolean;
-  navState: string | undefined;
-  addRoute(title: string | undefined): void;
+  nav?: boolean;
+  game?: boolean;
+  navState?: string | undefined;
+  addRoute?(title: string | undefined): void;
+  setButton(title: boolean): IButton;
 }
-export const NavBar: React.FC<INav> = (props) => {
+const NavBar: React.FC<INav> = (props) => {
   const [nowElement, list] = useState<React.MouseEvent>();
   function changeRoute(event: React.MouseEvent): void {
     list(event);
@@ -19,7 +22,7 @@ export const NavBar: React.FC<INav> = (props) => {
       document?.querySelectorAll(".navbar__element").forEach((item) => {
         if (item.textContent === props.navState) {
           item.classList.add("navbar__element-active");
-          props.addRoute(undefined);
+          if(props.addRoute) props.addRoute(undefined)
         } else {
           item.classList.remove("navbar__element-active");
         }
@@ -50,6 +53,10 @@ export const NavBar: React.FC<INav> = (props) => {
         ?.classList.remove("navbar__element-active");
     }
   }, []);
+  function openRegistrationModel(): void {
+    props.setButton(true);
+    
+  }
   return (
     <div
       className={
@@ -149,7 +156,14 @@ export const NavBar: React.FC<INav> = (props) => {
             </NavLink>
           </li>
         </ul>
+        <button className="button__user" onClick={openRegistrationModel}>
+          Registration
+        </button>
       </div>
     </div>
   );
 };
+const mapDispatchToProps = {
+  setButton
+}
+export default connect(null, mapDispatchToProps)(NavBar);

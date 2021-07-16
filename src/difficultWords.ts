@@ -2,6 +2,8 @@ import { ICards } from "./ICards";
 import { cardsItem } from "./cardsItem";
 import { ILocalItem } from "./ILocalItem";
 
+const sortDefault = 1;
+const sortNoDefault = -1;
 export function difficultWords(): ICards[] {
   const objCards: ILocalItem[] = [];
   const objReturn: ICards[] = [];
@@ -13,9 +15,9 @@ export function difficultWords(): ICards[] {
     .filter((item) => item.perCent !== "0.00")
     .sort((a, b) => {
       if (a.perCent < b.perCent) {
-        return 1;
+        return sortDefault;
       }
-      return -1;
+      return sortNoDefault;
     })
     .slice(0, 8);
   objFilter.forEach((item) => {

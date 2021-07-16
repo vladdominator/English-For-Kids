@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../Header/Header";
-import { NavBar } from "../NavBar/NavBar";
+import NavBar  from "../NavBar/NavBar";
 
 interface IForce {
   game: boolean;
@@ -27,7 +27,8 @@ export const Navigation: React.FC<IForce> = (props) => {
       if (
         (!(target as HTMLElement).closest(".navigation") &&
           !(target as HTMLElement).closest(".hamburger")) ||
-        (target as HTMLElement).closest(".navbar__element")
+        (target as HTMLElement).closest(".navbar__element") || 
+        (target as HTMLElement).closest(".button__user")
       ) {
         handleNav(false);
       }

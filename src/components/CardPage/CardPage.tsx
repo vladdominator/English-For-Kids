@@ -12,6 +12,17 @@ interface ICardItem {
   list: ICards[] | undefined;
   game: boolean;
 }
+const resolveValue = 426;
+const timeChangeSound = 1000;
+const timeOut = 2000;
+const timeOutGame = 3000;
+const timeOutFromGame = 500;
+const perCentZero = "0.00";
+const differenceBetweenEnd = 2;
+const starsWin = 1;
+const starsNoWin = 0;
+const per = 100;
+const fixPer = 2;
 export const CardPage: React.FC<ICardItem> = (props) => {
   const history = useHistory();
   const [games, initGame] = useState<boolean>(false);
@@ -35,7 +46,7 @@ export const CardPage: React.FC<ICardItem> = (props) => {
           ?.querySelectorAll(".navbar__element")[0]
           ?.classList.add("navbar__element-active");
         history.push('/');
-      }, 2000)
+      }, timeOut)
     }
     if (props.game)   {
       props.onAddItem(cards[location]);
@@ -59,13 +70,13 @@ export const CardPage: React.FC<ICardItem> = (props) => {
       if (sourseImageCard === (event.target as HTMLElement).id 
         && !image.includes((event.target as HTMLElement).id)) {
         changeSoundAnswer(`../audio/correct.mp3`);
-        starsUpdate([...stars, 1]);
+        starsUpdate([...stars, starsWin]);
         removeClick([...image, (event.target as HTMLElement).id]);
         if (objCards.correct !== undefined && objCards.word !== undefined) {
           objCards.correct++;
           window.localStorage.setItem(objCards.word, JSON.stringify(objCards));
         }
-        if (audioSrc > cards[location].length - 2) {
+        if (audioSrc > cards[location].length - differenceBetweenEnd) {
           new Promise((res) => {
             window.setTimeout(() => {
               changeGame(false);
@@ -74,8 +85,8 @@ export const CardPage: React.FC<ICardItem> = (props) => {
               } else {
                 changeSoundAnswer(`../audio/success.mp3`);
               }
-              res(456);
-            }, 1000)
+              res(resolveValue);
+            }, timeChangeSound)
           }).then(() => {
             window.setTimeout(() => {
               changeGame(true);
@@ -83,17 +94,17 @@ export const CardPage: React.FC<ICardItem> = (props) => {
                 ?.querySelectorAll(".navbar__element")[0]
                 ?.classList.add("navbar__element-active");
               history.push("/");
-            }, 3000)
+            }, timeOutGame)
           })
         } else {
           window.setTimeout(() => {
             changeAudio(audioSrc + 1);
             changeSoundAnswer(`../${arrSrc[audioSrc + 1]}`);
-          } , 500);
+          } , timeOutFromGame);
         }
       } else {
         changeSoundAnswer(`../audio/error.mp3`); 
-        starsUpdate([...stars, 0]);
+        starsUpdate([...stars, starsNoWin]);
         if (objCards.wrong !== undefined && objCards.word !== undefined) {
           objCards.wrong++;
           window.localStorage.setItem(objCards.word, JSON.stringify(objCards));
@@ -102,9 +113,9 @@ export const CardPage: React.FC<ICardItem> = (props) => {
       if (objCards.perCent !== undefined && objCards.word !== undefined && 
         objCards.correct !== undefined && objCards.wrong !== undefined) {
         if (objCards.wrong !== 0) {
-          objCards.perCent = String((100 * objCards.wrong / (objCards.correct + objCards.wrong)).toFixed(2));
+          objCards.perCent = String((per * objCards.wrong / (objCards.correct + objCards.wrong)).toFixed(fixPer));
         } else {
-          objCards.perCent = '0.00';
+          objCards.perCent = perCentZero;
         }
         window.localStorage.setItem(objCards.word, JSON.stringify(objCards));
       }

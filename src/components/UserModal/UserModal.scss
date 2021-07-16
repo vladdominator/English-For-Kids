@@ -1,0 +1,121 @@
+.popup__user {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1200;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .1s ease-in-out 0s;
+  top: 0;
+  left: 0;
+  .popup__body {
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    transform: translate(0, -200%);
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    transition: transform .6s ease-in-out 0s;
+  }
+}
+.popup__user_active {
+  opacity: 1;
+  overflow: auto;
+  visibility: visible;
+  .popup__body {
+    transform: translate(0, 0);
+  }
+}
+.popup__content {
+  width: 800px;
+  height: 420px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+}
+.krest {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #000;
+  font-size: 60px;
+  text-align: center;
+  cursor: pointer;
+}
+.registration__text {
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: 600;
+}
+.user__email, .user__password {
+  width: 600px;
+  height: 50px;
+  color: #000;
+  font-size: 30px;
+  border: 0;
+  margin-top: 40px;
+  border-bottom: 1px solid #000;
+}
+.user__email::placeholder, .user__password::placeholder {
+  color: #000;
+}
+.user__password {
+  margin-top: 60px;
+}
+.buttons__content {
+  margin-top: 60px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  padding: 0 20% 0 20%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4FBE79;
+}
+.registration__button, .login__button {
+  border: 0;
+  width: 140px;
+  height: 50px;
+  border: 2px solid #fff;
+  background-color: inherit;
+  color: #fff;
+  font-size: 20px;
+}
+@media screen and (max-width: 800px) {
+  .popup__content {
+    width: 280px;
+  }
+  .buttons__content {
+    padding: 0 5px 0 5px;
+    height: 120px;
+  }
+  .registration__button, .login__button {
+    width: 120px;
+  }
+  .user__email, .user__password {
+    width: 270px;
+  }
+  .registration__text {
+    font-size: 20px;
+    span {
+      display: none;
+    }
+  }
+  .krest {
+    right: 5px;
+    top: 5px;
+  }
+}
+.message__user {
+  margin-top: 10px;
+  font-size: 15px;
+  color: red;
+}

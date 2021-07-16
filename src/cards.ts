@@ -27,10 +27,10 @@ const cards = [
       audioSrc: "audio/draw.mp3",
     },
     {
-      word: "fish",
+      word: "fished",
       translation: "ловить рыбу",
-      image: "img/fish.jpg",
-      audioSrc: "audio/fish.mp3",
+      image: "img/fished.jpg",
+      audioSrc: "audio/fished.mp3",
     },
     {
       word: "fly",
@@ -161,7 +161,7 @@ const cards = [
     {
       word: "fish",
       translation: "рыба",
-      image: "img/fish1.jpg",
+      image: "img/fish.jpg",
       audioSrc: "audio/fish.mp3",
     },
     {

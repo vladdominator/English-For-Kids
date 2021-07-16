@@ -3,16 +3,19 @@ import { NavLink } from "react-router-dom";
 import { cards } from "../../cards";
 import { ILocalItem } from "../../ILocalItem";
 import "./StatisticPage.scss";
-import { difficultWords } from '../../difficultWords';
+import { difficultWords } from "../../difficultWords";
 
+const noReturnObj = 8;
+const sortDefault = 1;
+const sortNoDefault = -1;
 export const StatisticPage: React.FC = () => {
   const [infoCards, changeInfoCards] = useState<ILocalItem[]>([]);
   const [sort, changeSortItem] = useState<string>("word");
   const [sortBy, changeSortBy] = useState<boolean>(false);
   useEffect(() => {
     const objCards: ILocalItem[] = [];
-    cards.forEach((categoriesItem, index) => { 
-      if (index !== 8) {
+    cards.forEach((categoriesItem, index) => {
+      if (index !== noReturnObj) {
         categoriesItem.forEach((cardsItem) => {
           objCards.push(
             JSON.parse(window.localStorage.getItem(cardsItem.word) || "")
@@ -54,7 +57,7 @@ export const StatisticPage: React.FC = () => {
     changeInfoCards(objItem);
   }
   function changeRepeat() {
-    cards[8] = difficultWords();
+    cards[noReturnObj] = difficultWords();
   }
   return (
     <div className="statistic__container">
@@ -172,16 +175,16 @@ export const StatisticPage: React.FC = () => {
               ) {
                 if (!sortBy) {
                   if (a[sort] < b[sort]) {
-                    return 1;
+                    return sortDefault;
                   }
-                  return -1;
+                  return sortNoDefault;
                 }
                 if (a[sort] > b[sort]) {
-                  return 1;
+                  return sortDefault;
                 }
-                return -1;
+                return sortNoDefault;
               }
-              return 1;
+              return sortDefault;
             })
             .map((item, index) => (
               <tr key={index} className="table__row">

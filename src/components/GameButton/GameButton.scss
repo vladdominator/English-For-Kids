@@ -1,8 +1,9 @@
+@import "../../colors.scss";
 .game__button_click {
   width: 280px;
   height: 50px;
   border-radius: 20px;
-  background: linear-gradient(40deg, rgb(255 216 111), rgb(252 98 98));
+  background: $gradient;
   display: flex;
   align-items: center;
   justify-content: center;

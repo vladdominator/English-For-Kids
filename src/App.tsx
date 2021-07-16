@@ -9,14 +9,26 @@ import "./Style.scss";
 import { StatisticPage } from "./components/StatisticPage/StatisticPage";
 import { cards, categoriesCards } from "./cards";
 import { ILocalItem } from "./ILocalItem";
+import UserModal from "./components/UserModal/UserModal";
+import HeaderAdmin from "./components/HeaderAdmin/HeaderAdmin";
+import CategoryCards from "./components/CategoryCards/CategoryCards";
+import CardsAdminPanel from "./components/CardsAdminPanel/CardsAdminPanel";
 
+const endsCount = 8;
 const App: React.FC = () => {
   const [game, listGame] = useState<boolean>(false);
   const [navState, listNav] = useState<string>();
   const [listCard, updateCard] = useState<ICards[]>();
+  const [user, changeUser] = useState<string>("");
+  const [stateApi, setStateApi] = useState<string>("");
+  useEffect(() => {
+    if (window.localStorage.getItem("admin")) {
+      changeUser("admin");
+    }
+  }, []);
   useEffect(() => {
     cards.forEach((categoriesItem, index) => {
-      if (index !== 8) {
+      if (index !== endsCount) {
         categoriesItem.forEach((cardsItem) => {
           if (!window.localStorage.getItem(cardsItem.word)) {
             const obj: ILocalItem = {
@@ -45,34 +57,46 @@ const App: React.FC = () => {
   }
   return (
     <BrowserRouter>
-      <Navigation
-        onAdd={handleGame}
-        game={game}
-        onAddState={handleNavRoute}
-        navState={navState}
-      />
-      <div className="container">
-        <Switch>
-          <Route
-            path="/"
-            render={() => <MainPage game={game} onAdd={handleNavRoute} />}
-            exact
+      {user !== "admin" ? (
+        <>
+          <UserModal changeUser={changeUser} />
+          <Navigation
+            onAdd={handleGame}
+            game={game}
+            onAddState={handleNavRoute}
+            navState={navState}
           />
-          <Route path="/statistic" component={StatisticPage} />
-          <Route
-            path="/cards/"
-            render={() => (
-              <CardPage
-                onAddItem={updateCardItem}
-                list={listCard}
-                game={game}
+          <div className="container">
+            <Switch>
+              <Route
+                path="/"
+                render={() => <MainPage game={game} onAdd={handleNavRoute} />}
+                exact
               />
-            )}
-          />
-          <Redirect from="/cards" to="/" />
-        </Switch>
-      </div>
-      <Footer />
+              <Route path="/statistic" component={StatisticPage} />
+              <Route
+                path="/cards/"
+                render={() => (
+                  <CardPage
+                    onAddItem={updateCardItem}
+                    list={listCard}
+                    game={game}
+                  />
+                )}
+              />
+              HeaderAdmin
+              <Redirect from="/cards" to="/" />
+            </Switch>
+          </div>
+          <Footer />
+        </>
+      ) : (
+        <>
+          <HeaderAdmin changeUser={changeUser} setStateApi={setStateApi}/>
+          <Route path="/AdminCards" render={() => <CardsAdminPanel stateApi={stateApi} />} />
+          <Route path="/" render={() => <CategoryCards setStateApi={setStateApi} />} exact />
+        </>
+      )}
     </BrowserRouter>
   );
 };

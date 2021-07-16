@@ -1,3 +1,4 @@
+@import "../../colors.scss";
 .word__card {
   perspective: 40rem;
   width: 280px;
@@ -30,12 +31,12 @@
     backface-visibility: hidden;
   }
   height: 100%;
-  box-shadow: -3px 5px 19px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: -3px 5px 19px 5px $shadow;
   border-radius: 10px;
   transition: all 0.5s ease-in-out 0s;
   transform-origin: right;
   &__front {
-    background-color: #fff;
+    background-color: $white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -142,10 +143,10 @@
     font-weight: 800;
   }
   .wins {
-    color: #0099ae;
+    color: $wins-color;
   }
   .errors__count {
-    color: #f03e3d;
+    color: $error-color;
   }
   @media screen and (max-width: 500px) {
     .img__after_game {
@@ -157,5 +158,5 @@
   margin-top: 40px;
   font-size: 40px;
   font-weight: 600;
-  color: #0099ae;
+  color: $wins-color;
 }
