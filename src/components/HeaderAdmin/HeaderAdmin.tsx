@@ -19,9 +19,9 @@ const HeaderAdmin: React.FC<IHeader> = (props) => {
       });
   }, []);
   function removeAdmin() {
-    props.changeUser("");
     localStorage.removeItem("admin");
     setTimeout(() => {
+      props.changeUser("");
       history.push("/");
     }, 500);
   }

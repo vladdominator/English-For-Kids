@@ -13,6 +13,7 @@ export interface IUser {
   setButton?(title: boolean): IButton;
   setUser?(title: ILive): IForm;
   fetchedUser?: IFetchedUser;
+  removeMessage?(): void;
   userTypes?: string;
 }
 export interface IState {

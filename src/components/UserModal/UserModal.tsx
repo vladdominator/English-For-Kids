@@ -10,6 +10,7 @@ import {
   IButton,
   IForm,
   ILive,
+  removeMessage,
 } from "../../redux/actions";
 import "./UserModal.scss";
 
@@ -21,6 +22,7 @@ interface IUserLive {
   setUser?(title: ILive): IForm;
   fetchedUser?: IFetchedUser;
   userTypes?: string;
+  removeMessage?(): void;
 }
 function instanceOfA(object: IUser): object is IUserLive {
   return "changeUser" in object;
@@ -28,13 +30,14 @@ function instanceOfA(object: IUser): object is IUserLive {
 const UserModal: React.FC<IUser | IUserLive> = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const message = useSelector(
+  let message = useSelector(
     (state: IState) => state?.user?.fetchedUser?.message
   );
   setTimeout(() => {
     if (message === "admin") {
       if (instanceOfA(props) && props.changeUser) props.changeUser("admin");
       history.push("/");
+      if (props.removeMessage) props.removeMessage();
       window.localStorage.setItem(
         "admin",
         JSON.stringify({ email: "admin", password: "admin" })
@@ -127,5 +130,6 @@ const mapDispatchToProps = {
   setButton,
   setUser,
   setUserTypes,
+  removeMessage,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(UserModal);

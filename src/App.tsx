@@ -25,7 +25,7 @@ const App: React.FC = () => {
     if (window.localStorage.getItem("admin")) {
       changeUser("admin");
     }
-  }, []);
+  }, [user]);
   useEffect(() => {
     cards.forEach((categoriesItem, index) => {
       if (index !== endsCount) {
@@ -92,9 +92,16 @@ const App: React.FC = () => {
         </>
       ) : (
         <>
-          <HeaderAdmin changeUser={changeUser} setStateApi={setStateApi}/>
-          <Route path="/AdminCards" render={() => <CardsAdminPanel stateApi={stateApi} />} />
-          <Route path="/" render={() => <CategoryCards setStateApi={setStateApi} />} exact />
+          <HeaderAdmin changeUser={changeUser} setStateApi={setStateApi} />
+          <Route
+            path="/AdminCards"
+            render={() => <CardsAdminPanel stateApi={stateApi} />}
+          />
+          <Route
+            path="/"
+            render={() => <CategoryCards setStateApi={setStateApi} />}
+            exact
+          />
         </>
       )}
     </BrowserRouter>

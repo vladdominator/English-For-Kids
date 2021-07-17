@@ -59,6 +59,12 @@ interface IUserType {
   type: string;
   payload: string;
 }
+export function removeMessage(path: string, body: ILocalUser) {
+  return {
+    type: fetchedUser,
+    payload: { message: "" },
+  };
+}
 export function setUserTypes(post: string): IUserType {
   return {
     type: userType,
