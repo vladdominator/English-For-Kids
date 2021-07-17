@@ -40,7 +40,7 @@ const HeaderAdmin: React.FC<IHeader> = (props) => {
       <div className="container">
         <ul>
           <li>
-            <NavLink activeClassName="active__panel" to="/">
+            <NavLink exact activeClassName="active__panel" to="/">
               Categories
             </NavLink>
           </li>
